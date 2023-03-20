@@ -38,56 +38,73 @@ public class HelloApplication extends Application {
             {
                 String user_input = text_field.getText();
 
-                String text = "";
+                String calc_friendly_text = add_space_between_operations(user_input);
 
-                for (int i = 0; i < user_input.length(); ++i) {
-                    char a = user_input.charAt(i);
+                List<String> text_list = new ArrayList(Arrays.asList(calc_friendly_text.split(" ")));
 
-                    if (i == user_input.length() -1) {
-                        text += a;
-                        break;
-                    }
+                String answer = calculate(text_list);
 
-                    char b = user_input.charAt(i+1);
-
-                    if (Character.isDigit(a) && b == '+') {
-                        // 1 +
-                        text = text + a + " ";
-                    }
-
-                    else if (a == '+' && Character.isDigit(b)) {
-                        // + 1
-                        text = text + a + " ";
-                    }
-
-                    else {
-                        text += a;
-                    }
-                }
-
-                List<String> text_list = new ArrayList(Arrays.asList(text.split(" ")));
-
-                for (int i = 0; i < text_list.size(); ++i) {
-                    String a = text_list.get(i);
-
-                    if (a.equals("+")) {
-                        int value1 = Integer.parseInt(text_list.get(i-1));
-                        int value2 = Integer.parseInt(text_list.get(i+1));
-                        Integer result = value1 + value2;
-
-                        text_list.set(i-1, result.toString());
-                        text_list.remove(i);
-                        text_list.remove(i);
-
-                        i = 0;
-                    }
-                }
-
-                text_field.setText("= " + text_list.get(0));
+                text_field.setText("= " + answer);
             }
         };
 
         button.setOnAction(event);
+    }
+
+    public String add_space_between_operations(String user_input) {
+        /* Add space between operations of user input */
+
+        String text = "";
+
+        for (int i = 0; i < user_input.length(); ++i) {
+            char a = user_input.charAt(i);
+
+            if (i == user_input.length() -1) {
+                text += a;
+                break;
+            }
+
+            char b = user_input.charAt(i+1);
+
+            if (Character.isDigit(a) && b == '+') {
+                // 1 +
+                text = text + a + " ";
+            }
+
+            else if (a == '+' && Character.isDigit(b)) {
+                // + 1
+                text = text + a + " ";
+            }
+
+            else {
+                text += a;
+            }
+        }
+
+        return text;
+    }
+
+    public String calculate(List<String> text_list) {
+
+        for (int i = 0; i < text_list.size(); ++i) {
+            String a = text_list.get(i);
+
+            if (a.equals("+")) {
+                int value1 = Integer.parseInt(text_list.get(i-1));
+                int value2 = Integer.parseInt(text_list.get(i+1));
+                Integer result = value1 + value2;
+
+                text_list.set(i-1, result.toString());
+                text_list.remove(i);
+                text_list.remove(i);
+
+                i = 0;
+            }
+        }
+
+        String answer = text_list.get(0);
+
+        return answer;
     }
 
     public static void main(String[] args) {
