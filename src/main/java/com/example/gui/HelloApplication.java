@@ -6,9 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
@@ -68,12 +66,12 @@ public class HelloApplication extends Application {
 
             if (Character.isDigit(a) && b == '+') {
                 // 1 +
-                text = text + a + " ";
+                text += a + " ";
             }
 
             else if (a == '+' && Character.isDigit(b)) {
                 // + 1
-                text = text + a + " ";
+                text += a + " ";
             }
 
             else {
@@ -85,6 +83,7 @@ public class HelloApplication extends Application {
     }
 
     public String calculate(List<String> text_list) {
+        /* Get answer of the calculation */
 
         for (int i = 0; i < text_list.size(); ++i) {
             String a = text_list.get(i);
@@ -92,7 +91,9 @@ public class HelloApplication extends Application {
             if (a.equals("+")) {
                 int value1 = Integer.parseInt(text_list.get(i-1));
                 int value2 = Integer.parseInt(text_list.get(i+1));
-                Integer result = value1 + value2;
+
+                // result of the equation
+                Integer result =  value1 + value2;
 
                 text_list.set(i-1, result.toString());
                 text_list.remove(i);
@@ -102,9 +103,8 @@ public class HelloApplication extends Application {
             }
         }
 
-        String answer = text_list.get(0);
-
-        return answer;
+        // answer
+        return text_list.get(0);
     }
 
     public static void main(String[] args) {
