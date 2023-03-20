@@ -38,7 +38,7 @@ public class HelloApplication extends Application {
             {
                 String user_input = text_field.getText();
 
-                String calc_friendly_text = add_space_between_operations(user_input);
+                String calc_friendly_text = make_user_input_calculator_friendly(user_input);
 
                 List<String> text_list = new ArrayList(Arrays.asList(calc_friendly_text.split(" ")));
 
@@ -51,7 +51,7 @@ public class HelloApplication extends Application {
         button.setOnAction(event);
     }
 
-    public String add_space_between_operations(String user_input) {
+    public String make_user_input_calculator_friendly(String user_input) {
         /* Add space between operations of user input */
 
         String text = "";
