@@ -96,6 +96,7 @@ public class HelloApplication extends Application {
     }
 
     private void addition_and_subtraction() {
+        /* Add and Subtract each of the two numbers for each iteration */
         for (int i = 0; i < text_list.size(); ++i) {
             String a = text_list.get(i);
 
@@ -130,6 +131,7 @@ public class HelloApplication extends Application {
     }
 
     private void multiplication_and_division() {
+        /* Multiply and Divide each of the two numbers for each iteration */
         for (int i = 0; i < text_list.size(); ++i) {
             String a = text_list.get(i);
 
