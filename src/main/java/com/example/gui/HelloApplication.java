@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HelloApplication extends Application {
+
+    private List<String> text_list;
+
     @Override
     public void start(Stage stage) throws IOException {
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -38,9 +41,9 @@ public class HelloApplication extends Application {
 
                 String calc_friendly_text = make_user_input_calculator_friendly(user_input);
 
-                List<String> text_list = new ArrayList(Arrays.asList(calc_friendly_text.split(" ")));
+                text_list = new ArrayList(Arrays.asList(calc_friendly_text.split(" ")));
 
-                String answer = calculate(text_list);
+                String answer = calculate();
 
                 text_field.setText("= " + answer);
             }
@@ -82,7 +85,7 @@ public class HelloApplication extends Application {
         return text;
     }
 
-    public String calculate(List<String> text_list) {
+    public String calculate() {
         /* Get answer of the calculation */
 
         for (int i = 0; i < text_list.size(); ++i) {
@@ -117,6 +120,13 @@ public class HelloApplication extends Application {
             }
         }
 
+        addition_and_subtraction();
+
+        // answer
+        return text_list.get(0);
+    }
+
+    private void addition_and_subtraction() {
         for (int i = 0; i < text_list.size(); ++i) {
             String a = text_list.get(i);
 
@@ -148,9 +158,6 @@ public class HelloApplication extends Application {
                 i = 0;
             }
         }
-
-        // answer
-        return text_list.get(0);
     }
 
     public static void main(String[] args) {
