@@ -67,12 +67,12 @@ public class HelloApplication extends Application {
 
             char b = user_input.charAt(i+1);
 
-            if (Character.isDigit(a) && !Character.isDigit(b)) {
+            if (Character.isDigit(a) && is_operator(b)) {
                 // 1 +
                 text += a + " ";
             }
 
-            else if (!Character.isDigit(a) && Character.isDigit(b)) {
+            else if (is_operator(a) && Character.isDigit(b)) {
                 // + 1
                 text += a + " ";
             }
@@ -83,6 +83,11 @@ public class HelloApplication extends Application {
         }
 
         return text;
+    }
+
+    private boolean is_operator(char a) {
+        /* Check if the character is an operator */
+        return a == '+' || a == '-' || a == '*' || a == '/' || a == '^';
     }
 
     public String calculate() {
