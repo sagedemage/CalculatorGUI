@@ -64,12 +64,12 @@ public class HelloApplication extends Application {
 
             char b = user_input.charAt(i+1);
 
-            if (Character.isDigit(a) && b == '+') {
+            if (Character.isDigit(a) && !Character.isDigit(b)) {
                 // 1 +
                 text += a + " ";
             }
 
-            else if (a == '+' && Character.isDigit(b)) {
+            else if (!Character.isDigit(a) && Character.isDigit(b)) {
                 // + 1
                 text += a + " ";
             }
