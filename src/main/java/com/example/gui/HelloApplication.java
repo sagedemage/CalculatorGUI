@@ -101,6 +101,20 @@ public class HelloApplication extends Application {
 
                 i = 0;
             }
+
+            else if (a.equals("-")) {
+                int value1 = Integer.parseInt(text_list.get(i-1));
+                int value2 = Integer.parseInt(text_list.get(i+1));
+
+                // result of the equation
+                Integer result =  value1 - value2;
+
+                text_list.set(i-1, result.toString());
+                text_list.remove(i);
+                text_list.remove(i);
+
+                i = 0;
+            }
         }
 
         // answer
